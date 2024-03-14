@@ -1,0 +1,17 @@
+document.getElementById('add-task-btn').addEventListener('click', function() {
+    const taskInput = document.getElementById('task-input');
+    const task = taskInput.value.trim();
+    const dateTime = new Date().toLocaleString();
+
+    if (task !== '') {
+        const taskItem = document.createElement('li');
+        taskItem.textContent = `${task} (Added on ${dateTime})`;
+        taskItem.addEventListener('click', function() {
+            document.getElementById('completed-tasks').appendChild(taskItem);
+            taskItem.textContent = `${task} (Completed on ${new Date().toLocaleString()})`;
+        });
+
+        document.getElementById('task-list').appendChild(taskItem);
+        taskInput.value = ''; // Clear the input field
+    }
+});
